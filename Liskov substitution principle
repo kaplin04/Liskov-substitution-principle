@@ -1,0 +1,51 @@
+#include <iostream>
+
+// Базовий клас
+class Shape {
+public:
+    virtual double area() const = 0;
+};
+
+// Похідний клас - коло
+class Circle : public Shape {
+public:
+    Circle(double radius) : radius(radius) {}
+
+    double area() const override {
+        return 3.14 * radius * radius;
+    }
+
+private:
+    double radius;
+};
+
+// Похідний клас - квадрат
+class Square : public Shape {
+public:
+    Square(double side) : side(side) {}
+
+    double area() const override {
+        return side * side;
+    }
+
+private:
+    double side;
+};
+
+// Функція для обчислення площі будь-якої фігури
+double calculateArea(const Shape& shape) {
+    return shape.area();
+}
+
+int main() {
+    Circle circle(5.0);
+    Square square(4.0);
+
+    // Вивід площі кола
+    std::cout << "Circle Area: " << calculateArea(circle) << std::endl;
+
+    // Вивід площі квадрата
+    std::cout << "Square Area: " << calculateArea(square) << std::endl;
+
+    return 0;
+}
